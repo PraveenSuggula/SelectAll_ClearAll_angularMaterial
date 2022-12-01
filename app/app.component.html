@@ -1,0 +1,14 @@
+<form [formGroup]="selectFormGroup" fxFlex fxLayout="column" autocomplete="off" style="margin: 30px">
+	<div formArrayName="frmarray">
+	<div *ngFor="let skill of selectFormGroup.get('frmarray').controls; let i=index">
+	<div [formGroupName]="i">
+	<mat-select placeholder="User Type" formControlName="selectedddl" multiple>
+	<mat-option #allSelected (click)="toggleAllSelection(i)">{{!selectFormGroup.controls['frmarray'].controls[i].controls.selectall.value ? 'Select All' : 'Clear All'}}</mat-option>
+		<mat-option *ngFor="let filters of userTypeFilters" [value]="filters.key" (click)="tosslePerOne(i,allSelected)">
+			{{filters.value}}
+		</mat-option>
+	</mat-select>
+	</div>
+	</div>
+	</div>
+</form>
